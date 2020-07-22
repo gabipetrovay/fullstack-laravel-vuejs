@@ -105,6 +105,12 @@ npm install
 php artisan db:seed
 ```
 
+### Run the appliocation locally
+
+```shell
+php artisan serve
+```
+
 ## ⛏️ Built Using <a name = "built_using"></a>
 - [Laravel](https://laravel.com//) - PHP Framework
 - [VueJs](https://vuejs.org/) - Web Framework
