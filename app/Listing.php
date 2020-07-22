@@ -3,9 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Scout\Searchable;
 
 class Listing extends Model
 {
+    use Searchable;
+
     protected $casts = [
         'amenity_wifi' => 'boolean',
         'amenity_pets_allowed' => 'boolean',

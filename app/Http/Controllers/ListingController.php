@@ -65,4 +65,18 @@ class ListingController extends Controller
         $data = $this->get_listing_summaries();
         return response()->json($data);
     }
+
+    public function get_search_results_api()
+    {
+        $data = Listing::search('Apartment')->get();
+        return response()->json($data);
+    }
+
+    // TO DO: get a page to display all listing results. (Note. Search is working) 
+    public function get_search_results_web(Request $request)
+    {
+        $data = $this->get_listing_summaries();
+        $data = $this->add_meta_data($data, $request);
+        return view('app', ['data' => $data]);
+    }
 }
