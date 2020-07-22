@@ -48,7 +48,7 @@ You need to install [Docker](https://hub.docker.com/editions/community/docker-ce
 
 Create a Docker network for the MySQL server:
 
-``shell
+```shell
 docker network create mysql-network
 ```
 
@@ -62,6 +62,12 @@ Create the database (you will be prompted for the `MYSQL_ROOT_PASSWORD` provided
 
 ```shell
 docker run --rm -it --network mysql-network mysql:5 /bin/bash -c "echo 'CREATE DATABASE IF NOT EXISTS vuebnb' | mysql -h mysql5 -u root -p"
+```
+
+### Create the database schema
+
+```shell
+php artisan migrate
 ```
 
 ### Application configuration
@@ -85,6 +91,7 @@ DB_PASSWORD=my-secret-pw
 ```
 
 ### Installation
+
 Install all dependencies
 
 ```
@@ -92,13 +99,16 @@ composer install
 npm install
 ```
 
-Create your DB and put your environments variables in the file `.env`
+### Add sample data to the database
 
-Then run migrations and seeders
-
-```
-php artisan migrate
+```shell
 php artisan db:seed
+```
+
+### Run the appliocation locally
+
+```shell
+php artisan serve
 ```
 
 ## ⛏️ Built Using <a name = "built_using"></a>
