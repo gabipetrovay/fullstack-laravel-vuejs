@@ -64,6 +64,12 @@ Create the database (you will be prompted for the `MYSQL_ROOT_PASSWORD` provided
 docker run --rm -it --network mysql-network mysql:5 /bin/bash -c "echo 'CREATE DATABASE IF NOT EXISTS vuebnb' | mysql -h mysql5 -u root -p"
 ```
 
+### Create the database schema
+
+```shell
+php artisan migrate
+```
+
 ### Application configuration
 
 You need to create the `.env` file (using inspiration from `.env.example`). The minimum configuration you need is:
@@ -85,6 +91,7 @@ DB_PASSWORD=my-secret-pw
 ```
 
 ### Installation
+
 Install all dependencies
 
 ```
@@ -92,12 +99,9 @@ composer install
 npm install
 ```
 
-Create your DB and put your environments variables in the file `.env`
+### Add sample data to the database
 
-Then run migrations and seeders
-
-```
-php artisan migrate
+```shell
 php artisan db:seed
 ```
 
