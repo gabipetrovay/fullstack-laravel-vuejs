@@ -35,13 +35,54 @@ These instructions will get you a copy of the project up and running on your loc
 Clone the repository
 
 ```
-git clone https://github.com/vcjpierre/fullstack-laravel-vuejs.git
+git clone https://github.com/gabipetrovay/fullstack-laravel-vuejs.git
 ```
 
 ```
 cd fullstack-laravel-vuejs
 ```
 
+### Create and run the MySQL database
+
+You need to install [Docker](https://hub.docker.com/editions/community/docker-ce-desktop-mac/).
+
+Create a Docker network for the MySQL server:
+
+``shell
+docker network create mysql-network
+```
+
+Run a MySQL v5 container:
+
+```shell
+docker run -p 3306:3306 --rm --network mysql-network --name mysql5 -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mysql:5
+```
+
+Create the database (you will be prompted for the `MYSQL_ROOT_PASSWORD` provided above):
+
+```shell
+docker run --rm -it --network mysql-network mysql:5 /bin/bash -c "echo 'CREATE DATABASE IF NOT EXISTS vuebnb' | mysql -h mysql5 -u root -p"
+```
+
+### Application configuration
+
+You need to create the `.env` file (using inspiration from `.env.example`). The minimum configuration you need is:
+
+```
+APP_NAME=Vuebnb
+APP_ENV=local
+APP_KEY=kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk
+APP_DEBUG=true
+APP_LOG_LEVEL=debug
+APP_URL=http://vuebnb.test
+
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=vuebnb
+DB_USERNAME=root
+DB_PASSWORD=my-secret-pw
+```
 
 ### Installation
 Install all dependencies
